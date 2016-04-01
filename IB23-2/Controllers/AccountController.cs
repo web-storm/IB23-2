@@ -37,6 +37,11 @@ namespace IB23_2.Controllers
             return View();
         }
 
+        public ActionResult AuthError()
+        {
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
@@ -318,11 +323,6 @@ namespace IB23_2.Controllers
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult Error()
-        {
-            return View();
         }
 
         //

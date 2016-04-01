@@ -5,5 +5,38 @@
     ViewBag.Title = "БД Полицейского";
     @Scripts.Render("~/bundles/jquery")
     
+    <script type="text/javascript">
+
+        function GetSearchButton() { return $("#btnSearch"); }
+
+        function GetTable() { return $(".table"); }
+
+        $().ready(function() {
+            GetSearchButton().bind("click", showTable);
+        });
+
+        function showTable() {
+            alert("showtable");
+        }
+
+    </script>
+    
+        <div class="panel panel-success" style="width: 750px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="text-align: center;">
+            <b>База данных полицейского</b><br/>
+        </div>
+            <div class="panel-body" style="text-align: center; align-items: center;">
+                <p style="font-size: 12px;">Здесь вы можете найти данные по паспорту в базе данных регистрации людей</p>
+                <div class="navbar-form navbar-collapse" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Номер паспорта">
+                    </div>
+                    <button id="btnSearch" class="btn btn-default">Искать</button>
+                </div>
+                <!-- Table -->
+                <table class="table" style="text-align: center;"></table>
+            </div>
+    </div>
 }
 

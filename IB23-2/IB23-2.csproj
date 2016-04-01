@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CaptainController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
@@ -234,7 +235,7 @@
     <Content Include="Views\Police\Search.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Journalist\Index.cshtml" />
-    <Content Include="Views\Account\Error.cshtml" />
+    <Content Include="Views\Account\AuthError.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
