@@ -1,0 +1,19 @@
+﻿@using IB23_2.Models
+@model IQueryable<int>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Логисты";
+    @Scripts.Render("~/bundles/jquery")
+
+    @Html.ActionLink("Вернуться к добавлениям кодов", "Index")
+
+    <h4>В сессию добавлены следующие отчеты по функциям:</h4>
+
+    foreach (var item in Model)
+    {
+        <div class="glyphicon glyphicon-circle-arrow-right">  </div> @Enum.GetName(typeof(Employee), item); <br/>
+    }
+    <h4>Итого: @Model.Count()/10</h4>
+}
+
+

@@ -1,0 +1,213 @@
+﻿@using IB23_2.Controllers
+@using Microsoft.Ajax.Utilities
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Логисты";
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        function getSelector1() { return $("#pos1"); }
+        function getSelector2() { return $("#pos2"); }
+        function getSelector3() { return $("#pos3"); }
+        function getSelector4() { return $("#pos4"); }
+        function getSelector5() { return $("#pos5"); }
+        function getAddButton() { return $("#btnAdd"); }
+        function getSessionButton() { return $("#btnSession"); }
+        
+
+        $().ready(function () {
+            getSelector1().change(colChg);
+            getSelector2().change(colChg);
+            getSelector3().change(colChg);
+            getSelector4().change(colChg);
+            getSelector5().change(colChg);
+            colChg();
+            getAddButton().bind('click', Add);
+            getSessionButton().bind('click', NewSession);
+        });
+
+        function colChg() {
+            if (getSelector1().val() == "красный")
+                getSelector1().css("background-color", "red");
+            if (getSelector1().val() == "зелёный")
+                getSelector1().css("background-color", "green");
+            if (getSelector1().val() == "синий")
+                getSelector1().css("background-color", "blue");
+
+            if (getSelector2().val() == "красный")
+                getSelector2().css("background-color", "red");
+            if (getSelector2().val() == "зелёный")
+                getSelector2().css("background-color", "green");
+            if (getSelector2().val() == "синий")
+                getSelector2().css("background-color", "blue");
+
+            if (getSelector3().val() == "красный")
+                getSelector3().css("background-color", "red");
+            if (getSelector3().val() == "зелёный")
+                getSelector3().css("background-color", "green");
+            if (getSelector3().val() == "синий")
+                getSelector3().css("background-color", "blue");
+
+            if (getSelector4().val() == "красный")
+                getSelector4().css("background-color", "red");
+            if (getSelector4().val() == "зелёный")
+                getSelector4().css("background-color", "green");
+            if (getSelector4().val() == "синий")
+                getSelector4().css("background-color", "blue");
+
+            if (getSelector5().val() == "красный")
+                getSelector5().css("background-color", "red");
+            if (getSelector5().val() == "зелёный")
+                getSelector5().css("background-color", "green");
+            if (getSelector5().val() == "синий")
+                getSelector5().css("background-color", "blue");
+        }
+
+        function Add() {
+            var pos1 = 1, pos2 = 1, pos3 = 1, pos4 = 1, pos5 =1;
+            switch (getSelector1().val()) {
+                case 'красный':
+                    pos1 = 1;
+                    break;
+                case 'зелёный':
+                    pos1 = 2;
+                    break;
+                case 'синий':
+                    pos1 = 3;
+                    break;
+            }
+            switch (getSelector2().val()) {
+                case 'красный':
+                    pos2 = 1;
+                    break;
+                case 'зелёный':
+                    pos2 = 2;
+                    break;
+                case 'синий':
+                    pos2 = 3;
+                    break;
+            }
+            switch (getSelector3().val()) {
+                case 'красный':
+                    pos3 = 1;
+                    break;
+                case 'зелёный':
+                    pos3 = 2;
+                    break;
+                case 'синий':
+                    pos3 = 3;
+                    break;
+            }
+
+            switch (getSelector4().val()) {
+                case 'красный':
+                    pos4 = 1;
+                    break;
+                case 'зелёный':
+                    pos4 = 2;
+                    break;
+            }
+            switch (getSelector5().val()) {
+                case 'красный':
+                    pos5 = 1;
+                    break;
+                case 'зелёный':
+                    pos5 = 2;
+                    break;
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "Logyst564897231/Add",
+                data: { "pos1": pos1, "pos2": pos2, "pos3": pos3, "pos4": pos4, "pos5": pos5 },
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            async: true,
+            success: function (result) {
+                alert(result);
+            }
+        });
+            
+        }
+
+        function NewSession() {
+            $.ajax({
+                type: "GET",
+                url: "Logyst564897231/NewSession",
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (result) {
+                    alert(result);
+                }
+            });
+        }
+    </script>
+
+    <h4>Кодировка:</h4>
+    <table style="font: oblique 15px bold;">
+        <tr align="center">
+            <td>
+                Позиция 1
+            </td>
+            <td>
+                Позиция 2
+            </td>
+            <td>
+                Позиция 3
+            </td>
+            <td>
+                Позиция 4
+            </td>
+            <td>
+                Позиция 5
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select id="pos1" class="pos">
+                    <option>красный</option>
+                    <option>зелёный</option>
+                    <option>синий</option>
+                </select>
+            </td>
+            <td>
+                <select id="pos2" class="pos">
+                    <option>красный</option>
+                    <option>зелёный</option>
+                    <option>синий</option>
+                </select>
+            </td>
+            <td>
+                <select id="pos3" class="pos">
+                    <option>красный</option>
+                    <option>зелёный</option>
+                    <option>синий</option>
+                </select>
+            </td>
+            <td>
+                <select id="pos4" class="pos">
+                    <option>красный</option>
+                    <option>зелёный</option>
+                </select>
+            </td>
+            <td>
+                <select id="pos5" class="pos">
+                    <option>красный</option>
+                    <option>зелёный</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <button type="button" id="btnAdd" class="btn btn-success">Добавить новый код</button>
+    <button type="button" id="btnSession" class="btn btn-success">Начать новую сессию</button>
+
+    <h4>Внимание!<br /> Новую сессию необходимо начинать, добавив 10 групповых кодов!<br /> Иначе ваша функция будет считаться невыполненной!</h4>
+    <div id='list'></div>
+    @Html.ActionLink("Просмотреть список добавленных функций", "List")
+}
+
+

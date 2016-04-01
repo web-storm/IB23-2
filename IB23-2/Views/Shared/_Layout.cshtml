@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ИБ23-2</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top mainbar">
+        <div class="container">
+            <div class="navbar-header">
+                <h1>@Html.ActionLink("Бортовая система ИБ23-2","Index","Home", routeValues: null, htmlAttributes: new {style = "color: #fff"}) (@ViewBag.Title)</h1>
+            </div>
+            <div class="navbar-collapse collapse">
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr style="margin-bottom: 0px;"/>
+        <footer>
+            <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
+            </div>
+            <p style="margin-left: 10px;">&copy; 55 555 год от сотворения мира сего - Парапитек</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

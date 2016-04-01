@@ -1,0 +1,100 @@
+﻿@using IB23_2.Models
+@model int
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Капитан";
+    @Scripts.Render("~/bundles/jquery")
+
+    <script type="text/javascript">
+
+        var previousPage = 3;
+
+        function GetPageButton(number) { return $("#page_" + number); }
+
+        function GetTable() { return $(".table"); }
+
+        $().ready(function() {
+            GetPageButton(previousPage).toggleClass("active");
+            showTable(previousPage);
+            $('#btnRefresh').bind('click', function () { location.reload(); });
+            setTimeout(function () { location.reload(); }, 600000);
+        });
+
+        Employee =
+        {
+            1:"Механики", 
+            2:"Знахари", 
+            3:"Пилоты", // grg
+            4:"ПищевойПерсонал", // rrr
+            5:"Мусорщики", // ggg
+            6:"Связисты", // grb
+            7:"Охранники", // grr
+            8:"Гости", // bbr
+            9:"ПерваяГруппаНаучников", // brg
+            10:"ВтораяГруппаНаучников", // bgr
+            11:"UnknownError" // rgb
+        }
+
+        function showTable(number) {
+
+            GetPageButton(previousPage).toggleClass("active");
+            GetPageButton(number).toggleClass("active");
+            previousPage = number;
+
+            $.ajax({
+                type: "GET",
+                url: "GetSession",
+                data: { "number": number },
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (result) {
+                    GetTable().empty();
+                    GetTable().append($('<tr style="font-weight: bold;"><td>Функция</td><td>Статус</td><td>Отчет по функции</td></tr>'));
+                    $('#unknown').hide();
+                    $.each(result, function(item) {
+                        if (this.function == 11)
+                            $('#unknown').show();
+                        var newTr = $('<tr />').appendTo(GetTable());
+                        $('<td> ' + Employee[this.function] + ' </td>').appendTo(newTr);
+                        $('<td> ' + this.status + ' </td>').appendTo(newTr);
+                        $('<td> ' + this.reportString + ' </td>').appendTo(newTr);
+                    });
+                    
+                }
+            });
+        }
+
+    </script>
+
+    <div class="panel panel-success" style="width: 750px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="text-align: center;">
+            <b>Отчет по сессии</b><br/>
+            <span class="label label-danger" id="unknown" style="display: none;">
+                Исключительная ситуация. Ошибка идентификации: требуется проверка компетентности управленческого персонала.
+            </span>
+        </div>
+        <div class="panel-body" style="text-align: center;">
+            <p style="font-size: 12px;">Вашей задачей является следить за выполнением всех функций на борту корабля ИБ23-2. Полный отчет предоставляется логистами 
+            корабля и выводится на экране ниже. Если присутствуют такие статусы как «Warning» или «Critical», пожалуйта, примите необходимые меры.</p>
+
+            <nav>
+                <ul class="pagination" style="margin: 0px;">
+                    @for (int i = 1; i <= Model; i++)
+                    {
+                        <li id="page_@i"><a onclick="showTable(@i);">@i</a></li>
+                    }
+                </ul>
+            </nav>
+
+            <button type="button" id="btnRefresh" class="btn btn-success glyphicon glyphicon-refresh">
+                
+            </button> 
+            
+        </div>
+
+        <!-- Table -->
+        <table class="table" style="text-align: center;"></table>
+    </div>
+}
