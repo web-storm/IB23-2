@@ -3,10 +3,37 @@
     ViewBag.Title = "Сессия";
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/jquery.countdown.js")
-    @Scripts.Render("~/Scripts/timescript.js")
+    
+    <script type="text/javascript">
+      
+        $(function ($) {
 
-    <div id="countdown"></div>
-	<p id="note"></p>
+            var note = $('#note'),
+                ts = (new Date()).getTime() + 10 * 1000;
+
+            $('#countdown').countdown({
+                timestamp: ts,
+                callback: function (days, hours, minutes, seconds) {
+
+                    var message = "";
+
+                    message += "До конца текущей сессии осталось:" + " <br />";
+                    message += minutes + " минут" + " и ";
+                    message += seconds + " секунд" + " <br />";
+
+                    if (minutes == 0 && seconds == 0) {
+                        minutes = 1;
+                    }
+
+                    note.html(message);
+                }
+            });
+
+        });
+
+    </script>
+    
+	<p id="note" style="font-size: 60px; width: 1200px; color: purple;"></p>
         
 }
 

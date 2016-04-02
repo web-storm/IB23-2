@@ -12,7 +12,7 @@
 	var days	= 24*60*60,
 		hours	= 60*60,
 		minutes	= 60;
-	
+
 	// Creating the plugin
 	$.fn.countdown = function(prop){
 		
