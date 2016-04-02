@@ -166,6 +166,7 @@
     <Compile Include="Controllers\JournalistController.cs" />
     <Compile Include="Controllers\LogystController.cs" />
     <Compile Include="Controllers\PoliceController.cs" />
+    <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +237,7 @@
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Journalist\Index.cshtml" />
     <Content Include="Views\Account\AuthError.cshtml" />
+    <Content Include="Views\Timer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
