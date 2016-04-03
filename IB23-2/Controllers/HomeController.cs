@@ -8,6 +8,9 @@ namespace IB23_2.Controllers
         {
             return View();
         }
-
+        public ActionResult Rules()
+        {
+            return View();
+        }
     }
 }

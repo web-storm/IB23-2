@@ -241,6 +241,7 @@
     <Content Include="Views\Journalist\Index.cshtml" />
     <Content Include="Views\Account\AuthError.cshtml" />
     <Content Include="Views\Timer\Index.cshtml" />
+    <Content Include="Views\Home\Rules.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
