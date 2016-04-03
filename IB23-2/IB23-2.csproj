@@ -172,12 +172,14 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Code.cs" />
+    <Compile Include="Models\Cycles.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ibDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Illness.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shedule.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
