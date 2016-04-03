@@ -25,14 +25,12 @@
                     if (minutes == 0 && seconds == 0) {
                         location.reload();
                     }
-                    if (minutes == 19 && seconds == 55) { //начало новой сессии
-                        var music = document.getElementById("music");
-                        music.innerHTML = '<embed src="http://cs5446v4.vk.me/u14171330/audios/f731aff126c5.mp3?extra=RCk2RVT1pVVzzXJjtQaS7aDqF-pF9EwPltb4u4undSeruXXb9fqB4aDTTPDDdAEISm0u7PPU900Yd13QGs02-dWf0T123IQbTEav-ogYG5pcnqVn7jFJ1gLza2XPkqXp6Lz23l2P6w,6" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>';
+                    if (minutes == 19 && seconds == 58) { //начало новой сессии
+                        document.getElementById('track1').play();
                     }
 
                     if (minutes == 5 && seconds == 0) { //до конца сессии осталось 5 минут
-                        var music = document.getElementById("music");
-                        music.innerHTML = '<embed src="http://cs6150v4.vk.me/u162039496/audios/048345b1870b.mp3?extra=ISvR8tObdiN79ezLl6HidNDALW8ZyPmbwugnhSOiipkSenGGrXj6OzzE3MQ6LZP8gN7OEojQGlquCyGxeu1chJHv-a4dkG5L1kp4DbvmA1hprXdszVXFpZ3KeXoz93f9aMM5HGbPaA,5" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>';
+                        document.getElementById('track2').play();
                     }
                     note.html(message);
                 }
@@ -41,13 +39,16 @@
         });
 
     </script>
-
+    
+    <audio id="track1" src="~/Media/new_session.mp3"></audio>
+    
+    <audio id="track2" src="~/Media/5minutes.mp3"></audio>
+    
     <input type="text" id="data" style="display: none;" value="@Model">
+    
 	<div class="navbar">
         <p id="note" style="color: purple; font-size: 20px"></p>
     </div>
-    <div id="music" style="display:none;"></div>
-
 }
 
 
