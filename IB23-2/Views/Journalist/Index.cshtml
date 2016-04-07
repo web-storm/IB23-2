@@ -1,7 +1,27 @@
-﻿
+﻿@model IB23_2.Models.JournalistModel
+
 @{
     ViewBag.Title = "Журналист";
 }
 
-<h2>Index</h2>
+<div class="panel panel-success" style="width: 320px;">
+    <!-- Default panel contents -->
+    <div class="panel-heading" style="text-align: center;">
+        <b>Форма публикации новости</b><br />
+    </div>
+    <div class="panel-body" style="text-align: center;">
+        <input type="text" class="form-control" placeholder="Заголовок статьи" /> 
+        <br />
+        <textarea class="form-control" style="height: 200px;" placeholder="Содержание"></textarea>
+    </div>
+    <div class="panel-footer">
+        <p style="font-size: 12px;">
+            Вашей задачей является издать публикацию для общего обозрения раз в сессию. Желаем вам удачи =)
+        </p>
+
+        <button type="button" id="btnPublish" class="btn btn-default ">Публиковать</button>
+    </div>
+</div>
+
+
 

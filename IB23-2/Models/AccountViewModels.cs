@@ -60,4 +60,15 @@ namespace IB23_2.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class JournalistModel
+    {
+        [Required]
+        [Display(Name = "бла1")]
+        public string Header { get; set; }
+
+        [Required]
+        [Display(Name = "бла2")]
+        public string Content { get; set; }
+    }
 }
