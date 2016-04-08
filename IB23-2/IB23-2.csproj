@@ -177,6 +177,7 @@
     <Compile Include="Models\ibDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Illness.cs" />
+    <Compile Include="Models\Illness2People.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Session.cs" />

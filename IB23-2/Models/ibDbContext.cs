@@ -9,5 +9,7 @@ namespace IB23_2.Models
         public DbSet<Cycles> Cycles { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Person> People { get; set; }
+        public DbSet<Illness> Illness { get; set; }
+        public DbSet<Illness2People> Illness2People { get; set; }
     }
 }

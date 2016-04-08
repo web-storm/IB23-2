@@ -1,7 +1,106 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Знахари";
+    @Scripts.Render("~/bundles/jquery")
+    
+    <script type="text/javascript">
+
+        function GetSearchButton() { return $("#btnSearch"); }
+
+        function GetTable() { return $(".table"); }
+
+        var Illnesses = {
+            1: "Озноб",
+            2: "Тремор",
+            3: "Тахикардии",
+            4: "Спазмы",
+            5: "Кашель",
+            6: "Покраснение глаз",
+            7: "Зуд",
+            8: "Жажда",
+            9: "Желтуха",
+            10: "Растеряный взгляд",
+            11: "Ступор",
+            12: "Агрессия",
+            13: "Провалы в памяти",
+            14: "Повышенное АД",
+            15: "Апатия",
+            16: "Светобоязнь",
+            17: "Расширенные зрачки",
+            18: "Зрачок не реагирует на свет",
+            19: "Рассеянность",
+            20: "Чихание",
+            21: "Головная боль",
+        }
+
+        $().ready(function() {
+            GetSearchButton().bind("click", showTable);
+        });
+
+        function showTable() {
+            $.ajax({
+                type: "GET",
+                url: "Doctor/Personal",
+                data: { "number": $('#number').val() },
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (result) {
+                    GetTable().empty();
+                    $('#error').hide();
+                    if (result[0]) {
+                        GetTable().append($('<tr style="font-weight: bold; color: #3a87ad"><td>Имя</td><td>Список болезней</td></tr>'));
+                        var newTr = $('<tr />').appendTo(GetTable());
+                        $('<td style="font-style: italic;"> ' + "Сударь(ыня) " + result[0].Name + ' </td>').appendTo(newTr);
+                        $.ajax({
+                            type: "GET",
+                            url: "Doctor/Illness",
+                            data: { "id": result[0].Id },
+                            contentType: "application/json; charset=utf-8",
+                            cache: false,
+                            async: true,
+                            success: function (result) {
+                                if (result[0]) {
+                                    var str = "";
+                                    $.each(result, function (item) {
+                                        str += Illnesses[this.illness] + "<br />";
+                                    });
+                                    $('<td style="font-style: italic;">' + str + '</td>').appendTo(newTr);
+                                }
+                                else {
+                                    $('<td style="font-style: italic;">' + "Полностью здоров" + '</td>').appendTo(newTr);
+                                }
+                            }
+                        });
+                    } else {
+                        $('#error').show();
+                    }
+                }
+            });
+        }
+
+    </script>
+    
+    <div class="panel panel-info" style="width: 750px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="text-align: center;">
+            <b>Парапитекский центр здоровья</b><br />
+        </div>
+        <div class="panel-body" style="text-align: center;">
+            <p style="font-size: 12px;">
+                Укажите медицинский номер застрахованного лица для поиска по базе данных.
+            </p>
+            <span id="error" class="label label-danger" style="display: none;">По данному номеру паспорта в базе данных ничего не найдено!</span>
+            <div class="navbar-form navbar-collapse" style="text-align: center;" role="search">
+                <div class="form-group">
+                    <input id="number" type="text" class="form-control" placeholder="Идентификатор лица">
+                </div>
+                <button id="btnSearch" class="btn btn-default">Искать</button>
+                
+            </div>
+        </div>
+        
+        <!-- Table -->
+        <table class="table" style="text-align: center;"></table>
+    </div>
+    
 }
-
-<h2>Index</h2>
-
