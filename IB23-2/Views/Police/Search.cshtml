@@ -16,7 +16,30 @@
         });
 
         function showTable() {
-            alert("showtable");
+            $.ajax({
+                type: "GET",
+                url: "Passport",
+                data: { "number": $('#number').val() },
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (result) {
+                    GetTable().empty();
+                    $('#error').hide();
+                    if (result[0]) {
+                        GetTable().append($('<tr style="font-weight: bold; color: #468847"><td>Имя</td><td>Должность</td><td>Наличие лицензии</td></tr>'));
+                        var newTr = $('<tr />').appendTo(GetTable());
+                        $('<td style="font-style: italic;"> ' + "Сударь(ыня) " + result[0].Name + ' </td>').appendTo(newTr);
+                        $('<td style="font-style: italic;"> ' + result[0].Position + ' </td>').appendTo(newTr);
+                        var licStr = result[0].Licence
+                            ? "<span class=\"label label-success\">Одобрено ВКТС</span>"
+                            : "<span class=\"label label-danger\">Лицензия отсутствует</span>";
+                        $('<td style="font-style: italic;"> ' + licStr + ' </td>').appendTo(newTr);
+                    } else {
+                        $('#error').show();
+                    }
+                }
+            });
         }
 
     </script>
@@ -26,16 +49,17 @@
         <div class="panel-heading" style="text-align: center;">
             <b>База данных полицейского</b><br/>
         </div>
-            <div class="panel-body" style="text-align: center; align-items: center;">
-                <p style="font-size: 12px;">Здесь вы можете найти данные по паспорту в базе данных регистрации людей</p>
+            <div class="panel-body" style="text-align: center; align-items: center; padding-bottom: 0px;">
+                <p style="font-size: 12px;">Здесь вы можете найти данные по паспорту в базе данных регистрации людей. <br/> <b>ВКТС</b> - Всепланетный Комитет Транспортного Сообщения</p>
                 <div class="navbar-form navbar-collapse" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Номер паспорта">
+                        <input id="number" type="text" class="form-control" placeholder="Номер паспорта">
                     </div>
                     <button id="btnSearch" class="btn btn-default">Искать</button>
                 </div>
                 <!-- Table -->
-                <table class="table" style="text-align: center;"></table>
+                <span id="error" class="label label-danger" style="display: none;">По данному номеру паспорта в базе данных ничего не найдено!</span>
+                <table class="table" style="text-align: center; background-color: #dff0d8; "></table>
             </div>
     </div>
 }

@@ -1,0 +1,25 @@
+﻿@model IB23_2.Models.News
+@{
+    Layout = null;
+    <title>ИБ23-2 Новости</title>
+    @Scripts.Render("~/bundles/jquery")
+   
+    <style type="text/css">
+       body {
+            background-image: url(@Url.Content("~/Media/space.jpg"));
+            background-repeat: repeat;
+            background-size: 35%;
+       }
+    </style>
+    <script type="text/javascript">
+        $().ready(function () {
+            setTimeout(function () { location.reload(); }, 5000);
+        });
+    </script>
+    @Html.ActionLink("Вернуться на главную","Index","Home", routeValues: null, htmlAttributes: new {style = "color: #fff; font-size: 20px"})
+    <div style="text-align: center;">
+        <p id="txtHeader" style="padding-top: 150px; font-size: 50px; color: #fff;">@Model.Header</p>
+        <p id="txtContent" style="font-size: 30px; color: #fff;">@Model.Content</p>
+    </div>
+}
+

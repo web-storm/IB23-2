@@ -2,21 +2,50 @@
 
 @{
     ViewBag.Title = "Журналист";
+    @Scripts.Render("~/bundles/jquery")
 }
 
-<div class="panel panel-success" style="width: 320px;">
+<script type="text/javascript">
+    
+    $().ready(function() {
+        $('#btnPublish').bind('click', btnAction);
+    });
+
+    function btnAction() {
+        $.ajax({
+            type: "GET",
+            url: "Journalist/PutReport",
+            data: { "header": $('#inHeader').val(), "content": $('#inContex').val() },
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            async: true,
+            success: function () {
+                $('#inHeader').val("");
+                $('#inContex').val("");
+                $('#success').show();
+                $('#words').hide();
+                setTimeout(function () { $('#success').hide(); $('#words').show(); }, 10000);
+            }
+        });
+    }
+</script>
+
+<div class="panel panel-success" style="width: 310px;">
     <!-- Default panel contents -->
     <div class="panel-heading" style="text-align: center;">
         <b>Форма публикации новости</b><br />
     </div>
     <div class="panel-body" style="text-align: center;">
-        <input type="text" class="form-control" placeholder="Заголовок статьи" /> 
+        <input id="inHeader" type="text" class="form-control" placeholder="Заголовок статьи" /> 
         <br />
-        <textarea class="form-control" style="height: 200px;" placeholder="Содержание"></textarea>
+        <textarea id="inContex" class="form-control" style="height: 200px;" placeholder="Содержание"></textarea>
     </div>
     <div class="panel-footer">
-        <p style="font-size: 12px;">
-            Вашей задачей является издать публикацию для общего обозрения раз в сессию. Желаем вам удачи =)
+        <span class="label label-success" id="success" style="display: none;">
+            Новость успешно опубликована на сервер!
+        </span>
+        <p style="font-size: 12px;" id="words">
+            Вашей задачей является издать публикацию для общего обозрения раз в сессию.<br/> Желаем вам удачи =)
         </p>
 
         <button type="button" id="btnPublish" class="btn btn-default ">Публиковать</button>

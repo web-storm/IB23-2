@@ -177,6 +177,8 @@
     <Compile Include="Models\ibDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Illness.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shedule.cs" />
@@ -195,6 +197,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Media\5minutes.mp3" />
     <Content Include="Media\new_session.mp3" />
+    <Content Include="Media\space.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -210,7 +213,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -244,6 +249,7 @@
     <Content Include="Views\Account\AuthError.cshtml" />
     <Content Include="Views\Timer\Index.cshtml" />
     <Content Include="Views\Home\Rules.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
